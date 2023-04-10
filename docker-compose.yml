@@ -24,5 +24,9 @@ services:
       - mysqldata:/var/lib/mysql
     ports:
       - 3306:3306
+  composer:
+    image: composer:latest
+    volumes:
+      - ./:/app
 volumes:
   mysqldata: {}

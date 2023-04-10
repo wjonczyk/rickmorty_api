@@ -1,9 +1,9 @@
 # Rick & Morty Characters RESTApi
 
-This application allows to fetch characters from https://rickandmortyapi.com/ to own database MariaDB
+This application allows to fetch characters from https://rickandmortyapi.com/ to supplied MariaDB database
 using console command and provides endpoint returning imported resources by name.
 It can be run locally utilising Docker containers.<br>
-Porvided docker-compose.yml file contains definitions for custom php, mariadb and nginx containers. 
+Provided docker-compose.yml file contains definitions for custom php, mariadb and nginx containers. 
 
 ## Prerequisites
 Make sure that **docker** and **docker-compose** are installed.
@@ -28,19 +28,21 @@ To stop application at any moment run
 ```bash
 docker-compose down
 ```
-but to continue with installation process, leave it running for now
+but to continue with installation process, leave it running for now.
 
 ### Step 4.
 #### Install required dependencies using composer
-php container has composer installed and we use it to install required packages using
+We use composer container to install required packages using
 ```bash
-docker exec -it rickmorty_api-php-1 composer install
+docker run --rm --interactive --tty \
+  --volume $PWD:/app \
+  composer install
 ```
-Wait until composer script finishes
+Wait until composer script finishes.
 
 ### Step 5. (optional)
 This step is optional. Database should be created on mysql container startup, but in case<br>
-somehow it didn't or You deleted it and next step throws an error db can be created<br>
+somehow it didn't, or You deleted it and next step throws an error, db can be created<br>
 by this script **php ./bin/console doctrine:database:create**
 You can also inspect database on localhost:3306 and credentials from docker-compose.yaml
 #### Database Create First after docker-compose up<br>
